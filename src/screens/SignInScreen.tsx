@@ -30,7 +30,6 @@ export default function SignInScreen() {
 
         try {
             const token = await login(email, password);
-            // If login is successful, navigate to app
             navigation.navigate('AppTabs');
         } catch (err) {
             let errorMessage = 'Login failed. Please try again.';

@@ -1,4 +1,3 @@
-// MovieDetailScreen.tsx
 import React from 'react';
 import { ScrollView, View, Text, Image, StyleSheet, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -19,7 +18,6 @@ const MovieDetailScreen = ({ route }: MovieDetailScreenProps) => {
   return (
     <SafeAreaView style={{flex:1}}>
     <ScrollView style={styles.container}>
-      {/* Header */}
       <View style={styles.header}>
         <Icon
           name="arrow-back"
@@ -30,13 +28,8 @@ const MovieDetailScreen = ({ route }: MovieDetailScreenProps) => {
         />
         <Text style={styles.headerTitle}>Movie Details</Text>
       </View>
-
-      {/* Poster */}
       <Image source={{ uri: movie.poster }} style={styles.poster} />
-
-      {/* Main Content */}
       <View style={styles.content}>
-        {/* Title and Rating */}
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{movie.title}</Text>
           <View style={styles.ratingContainer}>
@@ -45,7 +38,7 @@ const MovieDetailScreen = ({ route }: MovieDetailScreenProps) => {
           </View>
         </View>
 
-        {/* Metadata */}
+
         <View style={styles.metaContainer}>
           <Text style={styles.metaText}>{movie.year}</Text>
           <Text style={styles.metaSeparator}>•</Text>
@@ -54,7 +47,7 @@ const MovieDetailScreen = ({ route }: MovieDetailScreenProps) => {
           <Text style={styles.metaText}>{movie.country}</Text>
         </View>
 
-        {/* Genre Tags */}
+
         <View style={styles.genreContainer}>
           {movie.genre?.map((genre, index) => (
             <View key={index} style={styles.genrePill}>
@@ -63,22 +56,18 @@ const MovieDetailScreen = ({ route }: MovieDetailScreenProps) => {
           ))}
         </View>
 
-        {/* Plot */}
         <Text style={styles.sectionTitle}>Storyline</Text>
         <Text style={styles.plotText}>{movie.plot}</Text>
 
-        {/* Cast */}
         <Text style={styles.sectionTitle}>Cast</Text>
         <View style={styles.castContainer}>
           <Icon name="people" size={20} color="#666" style={styles.castIcon} />
           <Text style={styles.castText}>{movie.actors.join(', ')}</Text>
         </View>
 
-        {/* Director */}
         <Text style={styles.sectionTitle}>Director</Text>
         <Text style={styles.directorText}>{movie.director}</Text>
 
-        {/* Additional Info */}
         <View style={styles.infoContainer}>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Awards:</Text>
