@@ -2,6 +2,14 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Getting Started
 
+## install dependecies
+
+Node > 18
+Xcode > 15
+cd RNTask
+npm install OR Yarn
+cd ios & pod install
+
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
 ## Step 1: Start Metro
