@@ -41,7 +41,6 @@ export default function SignupScreen() {
 
         try {
             const token = await register(email, password);
-            // If registration is successful, navigate to app
             navigation.navigate('AppTabs');
         } catch (err) {
             console.log(err)

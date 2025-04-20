@@ -9,12 +9,14 @@ import { Button } from '../components/Button';
 import { FontSizes } from '../styles/FontSizes';
 import { logout } from '../services/auth';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { resetFavorites } from '../store/favoritesSlice';
 type MovieCardNavigationProp = NativeStackNavigationProp<RootStackParamList, 'MovieListScreen'>;
 
 const MovieListScreen = () => {
 
   const navigation = useNavigation<MovieCardNavigationProp>();
-
+  const dispatch = useDispatch();
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
@@ -82,6 +84,7 @@ const MovieListScreen = () => {
   }
 const Logout =()=>{
   logout();
+  dispatch(resetFavorites());
   navigation.reset({
     index: 0,
     routes: [{ name: 'SignInScreen' }],
