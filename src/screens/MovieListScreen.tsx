@@ -1,12 +1,20 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { FlatList, View, TextInput, Text, StyleSheet, ActivityIndicator, RefreshControl } from 'react-native';
 import { fetchMovies } from '../services/movies';
-import { Movie } from '../utils/types';
+import { Movie, RootStackParamList } from '../utils/types';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import MovieCard from '../components/MovieCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../components/Button';
+import { FontSizes } from '../styles/FontSizes';
+import { logout } from '../services/auth';
+import { useNavigation } from '@react-navigation/native';
+type MovieCardNavigationProp = NativeStackNavigationProp<RootStackParamList, 'MovieListScreen'>;
 
 const MovieListScreen = () => {
+
+  const navigation = useNavigation<MovieCardNavigationProp>();
+
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
@@ -72,9 +80,19 @@ const MovieListScreen = () => {
       </View>
     );
   }
+const Logout =()=>{
+  logout();
+  navigation.reset({
+    index: 0,
+    routes: [{ name: 'SignInScreen' }],
+  });
+}
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.logoutContainer}>
+        <Text style={styles.logoutText} onPress={Logout}>Logout</Text>
+      </View>
       <TextInput
         style={styles.searchBar}
         placeholder="Search movies..."
@@ -140,6 +158,14 @@ const styles = StyleSheet.create({
   listContent: {
     paddingBottom: 20,
   },
+  logoutContainer:{
+    flexDirection:'row',
+    justifyContent:'flex-end',
+    padding:15
+  },
+  logoutText:{fontWeight:'bold',
+  fontSize:FontSizes.medium,
+  color:'blue'}
 });
 
 export default MovieListScreen;
